@@ -1,0 +1,20 @@
+{
+  "name": "app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "lint": "prettier --check ."
+  },
+  "dependencies": {
+    "bootstrap": "^4.6.0",
+    "formik": "^2.2.6",
+    "next": "^10.0.0",
+    "react": "17.0.1",
+    "react-bootstrap": "^1.4.3",
+    "react-dom": "17.0.1"
+  },
+  "devDependencies": {
+    "prettier": "2.2.1"
+  }
+}

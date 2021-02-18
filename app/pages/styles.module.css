@@ -1,0 +1,107 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+
+.pageContainer {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #f8dbd5;
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Inter", sans-serif;
+}
+
+.browser {
+  background-color: #006654;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.16), 0px 8px 16px rgba(0, 0, 0, 0.16);
+  border-radius: 8px;
+  height: 50vw;
+  max-width: 1800px;
+  max-height: 1280px;
+  overflow: hidden;
+  width: 70vw;
+}
+
+.browserTopBar {
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  height: 40px;
+  padding: 0;
+}
+
+.topBarButtonsWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  margin: 4px;
+  margin-left: 12px;
+  /* width: 190px; */
+}
+
+.topBarButton {
+  height: 16px;
+  width: 16px;
+  margin: 4px;
+  background-color: rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+}
+
+.topBarTitle {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+  flex-grow: 1;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  margin: 3px;
+  padding: 0 12px;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.72);
+}
+
+.topBarTitle::selection {
+  background-color: #ace5f6;
+}
+
+.openNew {
+  border: 1px solid #2b189b;
+  border-radius: 8px;
+  padding: 0px 12px;
+  margin: 3px;
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.openNewText {
+  color: #2b189b;
+  font-size: 14px;
+  min-width: 140px;
+  text-align: center;
+}
+
+.wherebyIframe {
+  width: 100%;
+  height: calc(100% - 60px);
+  border: none;
+}
+
+.repositoryLink {
+  margin-top: 64px;
+}
