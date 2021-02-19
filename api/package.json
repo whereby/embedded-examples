@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "lint": "eslint ./src"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -14,6 +15,8 @@
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {
+    "eslint": "^7.20.0",
+    "eslint-config-prettier": "^7.2.0",
     "prettier": "2.2.1"
   }
 }

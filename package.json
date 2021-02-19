@@ -1,11 +1,14 @@
 {
     "name": "embedded-example",
+    "private": true,
     "scripts": {
-        "install-deps": "concurrently \"npm i ./\" \"cd api && npm i\" \"cd app && npm i\"  ",
-        "api": "cd api && npm start",
-        "app": "cd app && npm start",
-        "start": "concurrently \"npm run api\" \"npm run app\"  "
+        "start": " concurrently \"yarn workspace api start\" \"yarn workspace app start\"  ",
+        "lint": "yarn workspace api lint && yarn workspace app lint"
     },
+    "workspaces": [
+        "api",
+        "app"
+    ],
     "devDependencies": {
         "concurrently": "^5.3.0"
     }

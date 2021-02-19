@@ -1,13 +1,15 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
 import { useState } from "react";
 
+import TopBar from "./TopBar";
+
 import styles from "./styles.module.css";
 
 export default function Home() {
-  const [metadata, setMetadata] = useState(null);
+  const [roomInfo, setRoomInfo] = useState(null);
   const router = useRouter();
 
   useEffect(async () => {
@@ -15,7 +17,7 @@ export default function Home() {
 
     const { roomUrl } = router.query;
     if (roomUrl) {
-      setMetadata({ roomUrl });
+      setRoomInfo({ roomUrl });
     } else {
       const response = await fetch(
         "https://embedded-example.com:3001/meetings",
@@ -27,7 +29,7 @@ export default function Home() {
         }
       );
       const { roomUrl, hostRoomUrl } = await response.json();
-      setMetadata({
+      setRoomInfo({
         roomUrl,
         hostRoomUrl,
       });
@@ -42,33 +44,14 @@ export default function Home() {
 
       <div className={styles.content}>
         <div className={styles.browser}>
-          <div className={styles.browserTopBar}>
-            <div className={styles.topBarButtonsWrapper}>
-              <div className={styles.topBarButton} />
-              <div className={styles.topBarButton} />
-            </div>
-            <span className={styles.topBarTitle}>
-              {metadata?.roomUrl || ""}
-            </span>
-            {metadata && (
-              <a
-                className={styles.openNew}
-                href={`/?roomUrl=${metadata.roomUrl}`}
-                target="_blank"
-              >
-                <span className={styles.openNewText}>
-                  Open new window ↗
-                </span>
-              </a>
-            )}
-          </div>
-          {metadata ? (
+          <TopBar roomUrl={roomInfo?.roomUrl} />
+          {roomInfo ? (
             <iframe
               className={styles.wherebyIframe}
               src={
-                metadata.hostRoomUrl
-                  ? `${metadata.hostRoomUrl}&embed&screenshare=on`
-                  : `${metadata.roomUrl}?embed&screenshare=on`
+                roomInfo.hostRoomUrl
+                  ? `${roomInfo.hostRoomUrl}&embed&screenshare=on`
+                  : `${roomInfo.roomUrl}?embed&screenshare=on`
               }
               allow="camera; microphone; fullscreen; speaker; display-capture"
             ></iframe>
@@ -76,7 +59,14 @@ export default function Home() {
         </div>
 
         <span className={styles.repositoryLink}>
-          GitHub repository: <a href="https://github.com/whereby/embedded-example" target="_blank">https://github.com/whereby/embedded-example</a>
+          GitHub repository:{" "}
+          <a
+            href="https://github.com/whereby/embedded-example"
+            target="_blank"
+            rel="noreferrer"
+          >
+            https://github.com/whereby/embedded-example
+          </a>
         </span>
       </div>
     </div>
