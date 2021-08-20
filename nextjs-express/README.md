@@ -1,4 +1,4 @@
-# Whereby Example
+# Next.js with Express Example
 
 This is an example project to show how to use the
 [Whereby Embedded API](https://whereby.dev/) to embed a Whereby room
