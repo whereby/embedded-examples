@@ -90,9 +90,11 @@ const useCreateMeetingForm = ({ onMeetingCreated }) => {
       }),
     });
 
-    const data = await response.json();
-    console.log(data);
-    onMeetingCreated(data);
+    if (response.status === 201) {
+      const data = await response.json();
+      console.log("CreateMeetingAPI: ", data);
+      onMeetingCreated(data);
+    }
   };
 
   const formFields = {
