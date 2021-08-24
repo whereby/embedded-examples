@@ -2,6 +2,7 @@ import React from "react";
 import Head from "next/head";
 
 import CreateMeetingAPI from "../components/CreateMeetingAPI";
+import GetMeetingAPI from "../components/GetMeetingAPI";
 
 export default function Home() {
   const [createdMeetingInfo, setCreatedMeetingInfo] = React.useState(null);
@@ -32,6 +33,11 @@ export default function Home() {
         <CreateMeetingAPI
           onMeetingCreated={(info) => setCreatedMeetingInfo(info)}
           createdMeetingInfo={createdMeetingInfo}
+        />
+        <GetMeetingAPI
+          defaultMeetingId={
+            createdMeetingInfo ? createdMeetingInfo.meetingId : null
+          }
         />
       </main>
 
