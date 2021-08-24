@@ -1,5 +1,7 @@
 import Head from "next/head";
 
+import CreateMeetingForm from "../components/CreateMeetingForm";
+
 export default function Home() {
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col justify-center items-center">
@@ -24,10 +26,10 @@ export default function Home() {
           </a>
         </p>
 
-        <div></div>
+        <CreateMeetingForm />
       </main>
 
-      <footer className="w-full h-24 border-t border-gray-100 flex justify-center items-center">
+      <footer className="w-full h-24 border-t border-gray-200 flex justify-center items-center">
         <a
           className="flex flex-1 justify-center items-center"
           href="https://whereby.com"
@@ -41,7 +43,7 @@ export default function Home() {
               height="100%"
               viewBox="0 0 86 22"
               xmlns="http://www.w3.org/2000/svg"
-              class="index--Wordmark--eqdmz index--Logo--large--1dGR7"
+              className="index--Wordmark--eqdmz index--Logo--large--1dGR7"
               aria-label="Whereby"
             >
               <g>
