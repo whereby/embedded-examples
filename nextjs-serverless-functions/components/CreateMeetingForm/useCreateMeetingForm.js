@@ -31,7 +31,7 @@ const defaultValues = {
   fields: [],
 };
 
-const useCreateMeetingForm = ({ onMeetingCreated } = {}) => {
+const useCreateMeetingForm = ({ onMeetingCreated }) => {
   const {
     register,
     handleSubmit,
@@ -92,9 +92,7 @@ const useCreateMeetingForm = ({ onMeetingCreated } = {}) => {
 
     const data = await response.json();
     console.log(data);
-    if (onMeetingCreated) {
-      onMeetingCreated(data);
-    }
+    onMeetingCreated(data);
   };
 
   const formFields = {

@@ -1,8 +1,10 @@
 import Form from "../Form";
 import useCreateMeetingForm from "./useCreateMeetingForm";
 
-const CreateMeetingForm = () => {
-  const { errors, handleSubmit, formFields } = useCreateMeetingForm();
+const CreateMeetingForm = ({ onMeetingCreated }) => {
+  const { errors, handleSubmit, formFields } = useCreateMeetingForm({
+    onMeetingCreated,
+  });
 
   return (
     <Form

@@ -1,8 +1,14 @@
+import React from "react";
 import Head from "next/head";
 
 import CreateMeetingForm from "../components/CreateMeetingForm";
+import ResponseBlock from "../components/ResponseBlock";
+
+export const CreatedMeetingInfo = React.createContext(null);
 
 export default function Home() {
+  const [createdMeetingInfo, setCreatedMeetingInfo] = React.useState(null);
+
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col justify-center items-center">
       <Head>
@@ -26,7 +32,12 @@ export default function Home() {
           </a>
         </p>
 
-        <CreateMeetingForm />
+        <CreatedMeetingInfo.Provider value={createdMeetingInfo}>
+          <CreateMeetingForm
+            onMeetingCreated={(info) => setCreatedMeetingInfo(info)}
+          />
+          <ResponseBlock responseData={createdMeetingInfo} />
+        </CreatedMeetingInfo.Provider>
       </main>
 
       <footer className="w-full h-24 border-t border-gray-200 flex justify-center items-center">
