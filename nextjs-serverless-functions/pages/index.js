@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
 
-import CreateMeetingForm from "../components/CreateMeetingForm";
+import CreateMeetingAPI from "../components/CreateMeetingAPI";
 import ResponseBlock from "../components/ResponseBlock";
 
 export const CreatedMeetingInfo = React.createContext(null);
@@ -33,7 +33,7 @@ export default function Home() {
         </p>
 
         <CreatedMeetingInfo.Provider value={createdMeetingInfo}>
-          <CreateMeetingForm
+          <CreateMeetingAPI
             onMeetingCreated={(info) => setCreatedMeetingInfo(info)}
           />
           <ResponseBlock responseData={createdMeetingInfo} />
