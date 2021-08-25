@@ -19,13 +19,25 @@ const Form = ({ title, children, onSubmit, submitText }) => (
   </form>
 );
 
-const FormField = ({ label, children, error }) => (
-  <label className="grid grid-cols-1 gap-2">
-    <span className="text-primary">{label}</span>
-    {children}
-    {error && <p className="text-negative">{error.message}</p>}
-  </label>
-);
+const FormField = ({ label, children, error }) => {
+  let errorMsg;
+  if (Array.isArray(error)) {
+    errorMsg = error.map((e) => (
+      <p key={e.message} className="text-negative">
+        {e.message}
+      </p>
+    ));
+  } else {
+    errorMsg = error && <p className="text-negative">{error.message}</p>;
+  }
+  return (
+    <label className="grid grid-cols-1 gap-2">
+      <span className="text-primary">{label}</span>
+      {children}
+      {error && errorMsg}
+    </label>
+  );
+};
 
 const SelectField = React.forwardRef(({ children, ...rest }, ref) => (
   <select
