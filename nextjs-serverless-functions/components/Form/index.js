@@ -48,6 +48,7 @@ const SelectField = React.forwardRef(({ children, ...rest }, ref) => (
     {children}
   </select>
 ));
+SelectField.displayName = "SelectField";
 
 const InputField = React.forwardRef(({ children, ...rest }, ref) => (
   <input
@@ -56,6 +57,7 @@ const InputField = React.forwardRef(({ children, ...rest }, ref) => (
     ref={ref}
   />
 ));
+InputField.displayName = "InputField";
 
 Form.FormField = FormField;
 Form.SelectField = SelectField;
