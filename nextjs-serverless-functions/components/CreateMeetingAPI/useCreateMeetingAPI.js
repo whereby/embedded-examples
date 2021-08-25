@@ -1,34 +1,53 @@
-import { set, isBefore } from "date-fns";
+import { set, isBefore, format, parse, isDate } from "date-fns";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { timeInput2Date } from "../Form";
+
+const timeInput2Date = (_currentValue, originalValue) => {
+  const now = new Date();
+  return isDate(originalValue)
+    ? originalValue
+    : new Date(`${now.toDateString()} ${originalValue}`);
+};
+
+const dateInput2Date = (_currentValue, originalValue) => {
+  return isDate(originalValue)
+    ? originalValue
+    : parse(originalValue, "yyyy-LL-dd", new Date());
+};
+
+const text2Array = (_currentValue, originalValue) => {
+  return originalValue.length > 0 ? originalValue.split(",") : [];
+};
 
 const schema = yup.object().shape({
-  isLocked: yup.boolean(),
+  isLocked: yup.boolean().transform((v) => v === "true"),
   roomNamePrefix: yup
     .string()
     .matches(/[/][a-z0-9]/, { excludeEmptyString: true })
     .max(40),
   roomNamePattern: yup.string().oneOf(["uuid", "human-short"]),
   roomMode: yup.string().oneOf(["group", "normal"]),
-  startDate: yup.date().min(new Date()).required(),
-  startTime: yup.date().required(),
-  endDate: yup.date().min(new Date()).required(),
-  endTime: yup.date().required(),
-  fields: yup.array(yup.string().oneOf(["hostRoomUrl"])),
+  startDate: yup.date().transform(dateInput2Date).min(new Date()).required(),
+  startTime: yup.date().transform(timeInput2Date).required(),
+  endDate: yup.date().transform(dateInput2Date).min(new Date()).required(),
+  endTime: yup.date().transform(timeInput2Date).required(),
+  fields: yup
+    .array()
+    .transform(text2Array)
+    .of(yup.string().oneOf(["hostRoomUrl"])),
 });
 
 const defaultValues = {
-  isLocked: false,
+  isLocked: "false",
   roomNamePrefix: "",
   roomNamePattern: "uuid",
   roomMode: "normal",
-  startDate: new Date(),
-  startTime: new Date(),
-  endDate: new Date(),
-  endTime: new Date(),
-  fields: [],
+  startDate: format(new Date(), "yyyy-LL-dd"),
+  startTime: format(new Date(), "HH:mm"),
+  endDate: format(new Date(), "yyyy-LL-dd"),
+  endTime: format(new Date(), "HH:mm"),
+  fields: "",
 };
 
 const useCreateMeetingForm = ({ onMeetingCreated }) => {
@@ -98,54 +117,15 @@ const useCreateMeetingForm = ({ onMeetingCreated }) => {
   };
 
   const formFields = {
-    isLocked: {
-      ...register("isLocked", { setValueAs: (v) => v === "true" }),
-      defaultValue: defaultValues.isLocked,
-    },
-    roomNamePrefix: {
-      ...register("roomNamePrefix"),
-      defaultValue: defaultValues.roomNamePrefix,
-    },
-    roomNamePattern: {
-      ...register("roomNamePattern"),
-      defaultValue: defaultValues.roomNamePattern,
-    },
-    roomMode: {
-      ...register("roomMode"),
-      defaultValue: defaultValues.roomMode,
-    },
-    startDate: {
-      ...register("startDate", {
-        valueAsDate: true,
-      }),
-    },
-    startTime: {
-      ...register("startTime", {
-        setValueAs: timeInput2Date,
-      }),
-    },
-    endDate: {
-      ...register("endDate", {
-        valueAsDate: true,
-      }),
-    },
-    endTime: {
-      ...register("endTime", {
-        setValueAs: timeInput2Date,
-      }),
-    },
-    fields: {
-      ...register("fields", {
-        setValueAs: (v) => {
-          if (typeof v === "string") {
-            return v.split(",");
-          }
-
-          return v;
-        },
-      }),
-      defaultValue: "",
-    },
+    isLocked: register("isLocked"),
+    roomNamePrefix: register("roomNamePrefix"),
+    roomNamePattern: register("roomNamePattern"),
+    roomMode: register("roomMode"),
+    startDate: register("startDate"),
+    startTime: register("startTime"),
+    endDate: register("endDate"),
+    endTime: register("endTime"),
+    fields: register("fields"),
   };
 
   return {

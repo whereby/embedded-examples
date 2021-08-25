@@ -57,11 +57,6 @@ const InputField = React.forwardRef(({ children, ...rest }, ref) => (
   />
 ));
 
-export const timeInput2Date = (timeInput) => {
-  const now = new Date();
-  return new Date(`${now.toDateString()} ${timeInput}`);
-};
-
 Form.FormField = FormField;
 Form.SelectField = SelectField;
 Form.InputField = InputField;
