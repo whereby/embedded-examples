@@ -35,7 +35,7 @@ const GetMeetingAPI = ({ defaultMeetingId }) => {
         <Form.FormField label={"meetingId"}>
           <Form.InputField
             onChange={(v) => setMeetingId(v)}
-            value={meetingId || defaultMeetingId}
+            defaultValue={defaultMeetingId}
           />
         </Form.FormField>
       </Form>
