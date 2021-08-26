@@ -6,13 +6,13 @@ Next.js example project to work with Whereby APIs as Vercel [serverless function
 
 Preview the example live on [StackBlitz](http://stackblitz.com/):
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/whereby/embedded-examples/tree/main/nextjs-serverless-functions)
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/whereby/embedded-examples/tree/main/nextjs-vercel)
 
 ## Deploy your own
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/whereby/embedded-examples/tree/main/nextjs-serverless-functions&project-name=whereby-nextjs-serverless-functions&repository-name=whereby-nextjs-serverless-functions)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/whereby/embedded-examples/tree/main/nextjs-vercel&project-name=whereby-nextjs-vercel&repository-name=whereby-nextjs-vercel)
 
 ### Environment Variables
 
@@ -33,9 +33,9 @@ In order to use Whereby embedded meetings in an iframe, you need to add your new
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
 
 ```bash
-npx create-next-app --example https://github.com/whereby/embedded-examples/tree/main/nextjs-serverless-functions whereby-nextjs-serverless-functions
+npx create-next-app --example https://github.com/whereby/embedded-examples/tree/main/nextjs-vercel whereby-nextjs-vercel
 # or
-yarn create next-app --example https://github.com/whereby/embedded-examples/tree/main/nextjs-serverless-functions whereby-nextjs-serverless-functions
+yarn create next-app --example https://github.com/whereby/embedded-examples/tree/main/nextjs-vercel whereby-nextjs-vercel
 ```
 
 ## Getting Started
