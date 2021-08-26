@@ -36,15 +36,9 @@ export default function Home() {
           onMeetingCreated={(info) => setCreatedMeetingInfo(info)}
           createdMeetingInfo={createdMeetingInfo}
         />
-        <GetMeetingAPI
-          defaultMeetingId={
-            createdMeetingInfo ? createdMeetingInfo.meetingId : undefined
-          }
-        />
+        <GetMeetingAPI defaultMeetingId={createdMeetingInfo?.meetingId} />
         <DeleteMeetingAPI
-          defaultMeetingId={
-            createdMeetingInfo ? createdMeetingInfo.meetingId : undefined
-          }
+          defaultMeetingId={createdMeetingInfo?.meetingId}
           onMeetingDeleted={() => setCreatedMeetingInfo(null)}
         />
       </main>
