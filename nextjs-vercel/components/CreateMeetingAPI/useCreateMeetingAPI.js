@@ -20,7 +20,6 @@ const text2Array = (_currentValue, originalValue) => {
   return originalValue.length > 0 ? originalValue.split(",") : [];
 };
 
-
 const now = new Date();
 
 const schema = yup.object().shape({
@@ -31,9 +30,17 @@ const schema = yup.object().shape({
     .max(40),
   roomNamePattern: yup.string().oneOf(["uuid", "human-short"]),
   roomMode: yup.string().oneOf(["group", "normal"]),
-  startDate: yup.date().transform(dateInput2Date).min(new Date(now.toDateString())).required(),
+  startDate: yup
+    .date()
+    .transform(dateInput2Date)
+    .min(new Date(now.toDateString()))
+    .required(),
   startTime: yup.date().transform(timeInput2Date).required(),
-  endDate: yup.date().transform(dateInput2Date).min(new Date(now.toDateString())).required(),
+  endDate: yup
+    .date()
+    .transform(dateInput2Date)
+    .min(new Date(now.toDateString()))
+    .required(),
   endTime: yup.date().transform(timeInput2Date).required(),
   fields: yup
     .array()
@@ -48,8 +55,8 @@ const defaultValues = {
   roomMode: "normal",
   startDate: format(now, "yyyy-LL-dd"),
   startTime: format(now, "HH:mm"),
-  endDate: format(add(now, {hours: 1}), "yyyy-LL-dd"),
-  endTime: format(add(now, {hours: 1}), "HH:mm"),
+  endDate: format(add(now, { hours: 1 }), "yyyy-LL-dd"),
+  endTime: format(add(now, { hours: 1 }), "HH:mm"),
   fields: "",
 };
 

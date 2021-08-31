@@ -40,7 +40,24 @@ yarn create next-app --example https://github.com/whereby/embedded-examples/tree
 
 ## Getting Started
 
-First, run the development server:
+We are using [Custom Server](https://nextjs.org/docs/advanced-features/custom-server) to run dev server on HTTPS with SSL certificate in `./server.js`.
+Note: A custom server can not be deployed on Vercel.
+
+1. Follow [this guide](https://web.dev/how-to-use-local-https/#setup) to create a certificate for `whereby.localhost.dev`,
+```bash
+mkcert -install
+
+mkcert whereby.localhost.dev
+```
+and move the resulting files (which should be named `whereby.localhost.dev-key.pem` and `whereby.localhost.dev.pem`) to `https_cert/`.
+
+2. Add `127.0.0.1 whereby.localhost.dev` as a new line to your `/etc/hosts` file (`sudo vi /etc/hosts`). So you can have local HTTPS.
+
+3. Go to your Whereby Embedded dashboard and allow the `https://whereby.localhost.dev:3000` domain.
+
+4. Create a `.env.local` file and add your Whereby Embedded environment variables `WHEREBY_API_KEY=eyJhb...` and `WHEREBY_WEBHOOK_SECRET=3bag9...`.
+
+5. Run the development server:
 
 ```bash
 npm run dev
@@ -48,10 +65,11 @@ npm run dev
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+6. Open [https://whereby.localhost.dev:3000](https://whereby.localhost.dev:3000) with your browser to see the result.
 
 You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/whereby/meetings](http://localhost:3000/api/whereby/meetings). This endpoint can be edited in `pages/api/whereby/meetings/index.js`.
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [https://whereby.localhost.dev:3000/api/whereby/meetings](https://whereby.localhost.dev:3000/api/whereby/meetings).
+This endpoint can be edited in `pages/api/whereby/meetings/index.js`.
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.

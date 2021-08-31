@@ -38,7 +38,7 @@ const DeleteMeetingAPI = ({ defaultMeetingId, onMeetingDeleted }) => {
         <Form.FormField label={"meetingId"}>
           <Form.InputField
             onChange={(v) => setMeetingId(v)}
-            value={meetingId || defaultMeetingId}
+            defaultValue={defaultMeetingId}
           />
         </Form.FormField>
       </Form>
