@@ -61,11 +61,11 @@ export default function Home() {
         <span className={styles.repositoryLink}>
           GitHub repository:{" "}
           <a
-            href="https://github.com/whereby/embedded-example"
+            href="https://github.com/whereby/embedded-examples/tree/main/nextjs-express"
             target="_blank"
             rel="noreferrer"
           >
-            https://github.com/whereby/embedded-example
+            https://github.com/whereby/embedded-examples/tree/main/nextjs-express
           </a>
         </span>
       </div>
