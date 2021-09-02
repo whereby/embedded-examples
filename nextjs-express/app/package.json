@@ -7,11 +7,11 @@
     "lint": "eslint ./pages"
   },
   "dependencies": {
-    "bootstrap": "^4.6.0",
-    "formik": "^2.2.6",
-    "next": "^10.0.0",
+    "bootstrap": "^5.1.0",
+    "formik": "^2.2.9",
+    "next": "^11.1.2",
     "react": "17.0.1",
-    "react-bootstrap": "^1.4.3",
+    "react-bootstrap": "^1.6.1",
     "react-dom": "17.0.1"
   },
   "devDependencies": {
