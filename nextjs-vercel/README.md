@@ -21,7 +21,8 @@ In order to use Whereby embedded APIs and Webhook callbacks in Vercel serverless
 - `WHEREBY_WEBHOOK_SECRET` is the secret that you get when creating a webhook in the "Webhooks" section of the Whereby Embedded dashboard.
 - `WHEREBY_API_KEY` is an API key you generate in the "API keys" section of the Whereby Embedded dashboard.
 
-Then go to your Vercel project settings page and add them as [environment variables](https://vercel.com/docs/environment-variables)
+Then go to your Vercel project settings page and add them as [environment variables](https://vercel.com/docs/environment-variables).
+A new Deployment is required for your changes to take effect.
 
 ### Allowed domains
 
