@@ -1,4 +1,4 @@
-import { set, isBefore, format, parse, isDate, add } from "date-fns";
+import { set, format, parse, isDate, add } from "date-fns";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -30,12 +30,6 @@ const schema = yup.object().shape({
     .max(40),
   roomNamePattern: yup.string().oneOf(["uuid", "human-short"]),
   roomMode: yup.string().oneOf(["group", "normal"]),
-  startDate: yup
-    .date()
-    .transform(dateInput2Date)
-    .min(new Date(now.toDateString()))
-    .required(),
-  startTime: yup.date().transform(timeInput2Date).required(),
   endDate: yup
     .date()
     .transform(dateInput2Date)
@@ -53,8 +47,6 @@ const defaultValues = {
   roomNamePrefix: "",
   roomNamePattern: "uuid",
   roomMode: "normal",
-  startDate: format(now, "yyyy-LL-dd"),
-  startTime: format(now, "HH:mm"),
   endDate: format(add(now, { hours: 1 }), "yyyy-LL-dd"),
   endTime: format(add(now, { hours: 1 }), "HH:mm"),
   fields: "",
@@ -65,7 +57,6 @@ const useCreateMeetingForm = ({ onMeetingCreated }) => {
     register,
     handleSubmit,
     formState: { errors },
-    setError,
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues,
@@ -76,32 +67,14 @@ const useCreateMeetingForm = ({ onMeetingCreated }) => {
     roomNamePrefix,
     roomNamePattern,
     roomMode,
-    startDate,
-    startTime,
     endDate,
     endTime,
     fields,
   }) => {
-    const startDateTime = set(startDate, {
-      hours: startTime.getHours(),
-      minutes: startTime.getMinutes(),
-    });
     const endDateTime = set(endDate, {
       hours: endTime.getHours(),
       minutes: endTime.getMinutes(),
     });
-
-    if (isBefore(endDateTime, startDateTime)) {
-      setError("endDate", {
-        type: "manual",
-        message: "Meeting end date and time is before start date and time",
-      });
-      setError("endTime", {
-        type: "manual",
-        message: "Meeting end date and time is before start date and time",
-      });
-      return;
-    }
 
     const response = await fetch("/api/whereby/meetings", {
       method: "POST",
@@ -113,7 +86,6 @@ const useCreateMeetingForm = ({ onMeetingCreated }) => {
         roomNamePrefix,
         roomNamePattern,
         roomMode,
-        startDate: startDateTime,
         endDate: endDateTime,
         fields,
       }),
@@ -131,8 +103,6 @@ const useCreateMeetingForm = ({ onMeetingCreated }) => {
     roomNamePrefix: register("roomNamePrefix"),
     roomNamePattern: register("roomNamePattern"),
     roomMode: register("roomMode"),
-    startDate: register("startDate"),
-    startTime: register("startTime"),
     endDate: register("endDate"),
     endTime: register("endTime"),
     fields: register("fields"),

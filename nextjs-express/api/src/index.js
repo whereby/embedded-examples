@@ -35,7 +35,6 @@ app.post("/meetings", async (req, res) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      startDate: new Date("2021-01-01").toISOString(),
       endDate: new Date("2099-01-01").toISOString(),
       fields: ["hostRoomUrl"],
       isLocked,

@@ -46,7 +46,6 @@ class Whereby {
     roomNamePrefix,
     roomNamePattern,
     roomMode,
-    startDate,
     endDate,
     fields
   }) {
@@ -58,7 +57,6 @@ class Whereby {
         roomNamePrefix,
         roomNamePattern,
         roomMode,
-        startDate,
         endDate,
         fields
       })
