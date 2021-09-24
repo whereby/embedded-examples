@@ -43,14 +43,6 @@ const CreateMeetingAPI = ({ onMeetingCreated, createdMeetingInfo }) => {
           </Form.SelectField>
         </Form.FormField>
 
-        <Form.FormField label={"startDate*"} error={errors.startDate}>
-          <Form.InputField type="date" {...formFields.startDate} required />
-        </Form.FormField>
-
-        <Form.FormField label={"startTime*"} error={errors.startTime}>
-          <Form.InputField type="time" {...formFields.startTime} required />
-        </Form.FormField>
-
         <Form.FormField label={"endDate*"} error={errors.endDate}>
           <Form.InputField type="date" {...formFields.endDate} required />
         </Form.FormField>
