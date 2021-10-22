@@ -15,7 +15,7 @@ class Whereby {
 
   isWebhookEventValid({ body, headers }) {
     const wbSignature = headers["whereby-signature"];
-    const matches = wbSignature.matchAll(/t=(.*)\,v1=(.*)/gm);
+    const matches = wbSignature.matchAll(/t=(.*),v1=(.*)/gm);
 
     let timestamp, signature;
     for (const match of matches) {
@@ -36,7 +36,7 @@ class Whereby {
       crypto.timingSafeEqual(
         Buffer.from(hashStr, "utf-8"),
         Buffer.from(signature, "utf-8")
-      ) &
+      ) &&
       (diffTime < Whereby.MAX_ELAPSED_TIME)
     );
   }
