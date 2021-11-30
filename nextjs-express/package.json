@@ -1,15 +1,15 @@
 {
-    "name": "embedded-example",
-    "private": true,
-    "scripts": {
-        "start": " concurrently \"yarn workspace api start\" \"yarn workspace app start\"  ",
-        "lint": "yarn workspace api lint && yarn workspace app lint"
-    },
-    "workspaces": [
-        "api",
-        "app"
-    ],
-    "devDependencies": {
-        "concurrently": "^6.2.1"
-    }
+  "name": "embedded-example",
+  "private": true,
+  "scripts": {
+    "start": " concurrently \"yarn workspace api start\" \"yarn workspace app start\"  ",
+    "lint": "yarn workspace api lint && yarn workspace app lint"
+  },
+  "workspaces": [
+    "api",
+    "app"
+  ],
+  "devDependencies": {
+    "concurrently": "^6.2.1"
+  }
 }

@@ -50,8 +50,8 @@ export default function Home() {
               className={styles.wherebyIframe}
               src={
                 roomInfo.hostRoomUrl
-                  ? `${roomInfo.hostRoomUrl}&embed&screenshare=on`
-                  : `${roomInfo.roomUrl}?embed&screenshare=on`
+                  ? `${roomInfo.hostRoomUrl}&minimal&screenshare=on`
+                  : `${roomInfo.roomUrl}?minimal&screenshare=on`
               }
               allow="camera; microphone; fullscreen; speaker; display-capture"
             ></iframe>

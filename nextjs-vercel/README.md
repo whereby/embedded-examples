@@ -28,7 +28,6 @@ A new Deployment is required for your changes to take effect.
 
 In order to use Whereby embedded meetings in an iframe, you need to add your newly deployed project domain as [allowed domains](https://whereby.com/information/embedded-guide/#allowed-domains) on your Whereby embedded dashboard "Allowed domains" section.
 
-
 ## How to use
 
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
@@ -45,11 +44,13 @@ We are using [Custom Server](https://nextjs.org/docs/advanced-features/custom-se
 Note: A custom server can not be deployed on Vercel.
 
 1. Follow [this guide](https://web.dev/how-to-use-local-https/#setup) to create a certificate for `whereby.localhost.dev`,
+
 ```bash
 mkcert -install
 
 mkcert whereby.localhost.dev
 ```
+
 and move the resulting files (which should be named `whereby.localhost.dev-key.pem` and `whereby.localhost.dev.pem`) to `https_cert/`.
 
 2. Add `127.0.0.1 whereby.localhost.dev` as a new line to your `/etc/hosts` file (`sudo vi /etc/hosts`). So you can have local HTTPS.
