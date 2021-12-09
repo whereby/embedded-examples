@@ -1,0 +1,59 @@
+plugins {
+    id 'org.springframework.boot' version '2.6.1'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'com.github.spotbugs' version '4.7.2'
+    id 'java'
+    id 'idea'
+}
+
+group = 'com.whereby'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'com.github.tomakehurst:wiremock-jre8:2.31.0'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+}
+
+spotbugs {
+    effort = 'max'
+    reportLevel = 'high'
+}
+
+tasks.matching { task -> task.name.startsWith('spotbugs') }.forEach {
+    it.reports {
+        html {
+            enabled = true
+            stylesheet = 'fancy-hist.xsl'
+        }
+        xml.enabled = false
+    }
+}
+
+test {
+    useJUnitPlatform()
+    maxHeapSize '256m'
+
+    testLogging {
+        afterSuite { desc, result ->
+            if (!desc.parent) {
+                println "   - test result: ${result.resultType} (${result.testCount} tests, ${result.successfulTestCount} successes, ${result.failedTestCount} failures, ${result.skippedTestCount} skipped)"
+            }
+        }
+    }
+    filter {
+        failOnNoMatchingTests = false
+    }
+}
+
+compileJava.inputs.files(processResources)
