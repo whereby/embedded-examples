@@ -71,7 +71,7 @@ public class MeetingServiceTests {
         Optional<Meeting> meeting = meetingService.getMeeting(m.getMeetingId(), null);
         mockServer.verify();
 
-        meeting.map(val -> assertThat(val).isEqualTo(m)).orElseThrow(() -> {
+        meeting.map(val -> assertThat(val).isEqualTo(m)).<RuntimeException>orElseThrow(() -> {
             Assertions.fail("Meeting should not be null");
             return null;
         });
@@ -97,7 +97,7 @@ public class MeetingServiceTests {
         Optional<Meeting> meeting = meetingService.getMeeting(m.getMeetingId(), Stream.of(Fields.hostRoomUrl).collect(Collectors.toSet()));
         mockServer.verify();
 
-        meeting.map(val -> assertThat(val).isEqualTo(m)).orElseThrow(() -> {
+        meeting.map(val -> assertThat(val).isEqualTo(m)).<RuntimeException>orElseThrow(() -> {
             Assertions.fail("Meeting should not be null");
             return null;
         });
@@ -117,7 +117,7 @@ public class MeetingServiceTests {
         Optional<Meeting> meeting = meetingService.getMeeting(meetingId, null);
         mockServer.verify();
 
-        assertThat(meeting.isEmpty()).isTrue();
+        assertThat(meeting.isPresent()).isFalse();
     }
 
     @Test
