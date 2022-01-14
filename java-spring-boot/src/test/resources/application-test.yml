@@ -1,0 +1,10 @@
+logging.level:
+  root: INFO
+  web: TRACE
+  org.springframework.web.filter.CommonsRequestLoggingFilter: TRACE
+
+spring.mvc.log-request-details: true
+
+api:
+  key: test-key
+  url: https://hereby.dev

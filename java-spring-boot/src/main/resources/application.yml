@@ -1,0 +1,12 @@
+logging.level.root: INFO
+
+server:
+  port: 9090
+  tomcat.connection-timeout: 5000
+
+spring:
+  application.name: embedded-demo
+
+api:
+  key:
+  url: https://api.whereby.dev

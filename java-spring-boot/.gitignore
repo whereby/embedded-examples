@@ -1,0 +1,4 @@
+.gradle
+build/
+**/application-local.yml
+.DS_Store
